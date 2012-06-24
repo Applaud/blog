@@ -6,6 +6,7 @@ from app.models import Entry, Member, BeadCount, BeadEntry
 import datetime
 import json
 import string
+from blog import settings
 
 # The main page. Shows all the blog entries (might change this to the last n entries later).
 def main_page(request):
@@ -58,18 +59,11 @@ def beads(request):
 def photos(request):
     return HttpResponse('Foo!')
 
-@csrf_exempt
-def post(request):
-    if request.method != 'POST':
-        return HttpResponse('failure!')
+def save_entry(request):
     entry_data = json.load(request)
-    passhash = entry_data['password']
-    with open('./password') as passfile:
-        word = passfile.read()
-        passhash += '\n'
-        if passhash != word:
-            return HttpResponse('password failure!')
     title = entry_data['title']
+    if not pass_ok(entry_data['password']):
+        return HttpResponse('password failure!')
     normalized_title = entry_data['normalized_title']
     tagline = entry_data['tagline']
     body = entry_data['body']
@@ -78,3 +72,32 @@ def post(request):
                   tagline=tagline, body=body, date=date)
     entry.save()
     return HttpResponse('success!')
+
+def save_img(request):
+    if not pass_ok(request.POST['password']):
+        return HttpResponse('password failure!')
+    print request.FILES
+    f = request.FILES['file']
+    destination = open(settings.CWD + '/../app/static/%s' % f.name, 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()
+    return HttpResponse('success!')
+
+@csrf_exempt
+def post(request):
+    print request.POST
+    if request.method != 'POST':
+        return HttpResponse('failure!')
+    if request.META['CONTENT_TYPE'] == 'application/json':
+        return save_entry(request)
+    elif request.META['CONTENT_TYPE'] == 'multipart/form-data; boundary=----------boundary----------':
+        return save_img(request)
+    else:
+        return HttpResponse('foo!')
+
+def pass_ok(passhash):
+    with open('./password') as passfile:
+        word = passfile.read()
+        passhash += '\n'
+        return passhash == word

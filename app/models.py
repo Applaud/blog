@@ -1,4 +1,5 @@
 from django.db import models
+from blog import settings
 
 class Entry(models.Model):
     title = models.CharField(max_length=1000)
@@ -23,7 +24,7 @@ class Member(models.Model):
     tagline = models.CharField(max_length=1000)
     bio = models.TextField()
     # To be done when I figure out what the deal is with ImageFields.
-    # image = models.ImageField(upload_to='')
+    image = models.ImageField(null=True, blank=True, upload_to=settings.STATIC_ROOT)
 
 # The number of beads that we've got. There should only be one of these models.
 class BeadCount(models.Model):
