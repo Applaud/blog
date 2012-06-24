@@ -1,0 +1,95 @@
+/* Font sizes. */
+$header-size:40px;
+$subtitle-size:12px;
+$footer-size:10px;
+
+/* Navigation bar. */
+$nav-border-width:5px;
+$nav-border-style:none, solid;
+
+/* Footer. */
+$footer-margin-bottom:40px;
+
+/* Main. */
+$main-padding:10px;
+
+/* Overall content width. */
+$content-width:750px;
+
+/* Colors. */
+$main-bg:#ffffff;
+
+body,
+html {
+    margin:0;
+    padding:0;
+    font-family:'Buenard', serif;
+    background-image:url('background.jpg');
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+h1 {
+    font-variant:small-caps;
+    font-size:$header-size;
+}
+
+h3 {
+    font-style:italic;
+    font-size:$subtitle-size;
+}
+
+#nav {
+    text-align:center;
+    ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+	border-width:$nav-border-width;
+	border-style:$nav-border-style;
+    }
+    li {
+	display:inline;
+	margin:0;
+	padding:0 5px;
+    }
+}
+
+#wrap {
+    width:$content-width;
+    margin:0 auto;
+}
+
+#main {
+    margin:10px auto;
+    padding:$main-padding;
+}
+
+#footer {
+    margin-bottom:$footer-margin-bottom;
+    clear:both;
+    text-align:center;
+    font-size:$footer-size;
+    p {
+	margin:0 auto;
+    }
+}
+
+#header {
+    text-align:center;
+}
+
+a {
+    color:inherit;
+    &:hover {
+	color:#555555;
+    }
+}
+
+/* The background for each individual entry. */
+.entry {
+    border-radius:25px;
+    background-color:#ffffff;
+    margin:20px auto;
+    padding:$main-padding;
+}

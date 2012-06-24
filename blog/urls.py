@@ -4,11 +4,12 @@ import settings
 
 urlpatterns = patterns('',
                        url(r'^$', views.main_page),
-#                       url(r'^about$', views.about),
                        url(r'^entry/(?P<title>.*)$', views.entry),
+                       url(r'^team/(?P<name>.*)$', views.team),
+                       url(r'^beads/$', views.beads),
+                       url(r'^photos/$', views.photos),
                        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
                         {'document_root': settings.STATIC_ROOT}),
                        (r'^feed/rss$', feeds.LatestEntriesRSS()),
-#                       (r'^feed/atom$', feeds.LatestEntriesAtom()),
                        (r'^post$', views.post),
                        )

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block links %}
+<style type="text/css">
+  h2 {
+    text-align:center;
+    font-size:50px;
+    margin-bottom:0px;
+  }
+</style>
+{% endblock %}
+{% block title %}Beads{% endblock %}
+{% block content %}
+<h2>Bead Count: {{ count }}</h2>
+<p>EXPLANATION<p>
+<hr />
+<ul>
+  {% for entry in entries %}
+  <li>
+    <h3>{{ entry.date }}</h3>
+    <p>{{ entry.text }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

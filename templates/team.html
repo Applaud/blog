@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+Apatapateam
+{% endblock %}
+{% block content %}
+<ul>
+  {% for member in members %}
+  <li>
+    <h2><a href="/team/{{ member.first_name }}-{{ member.last_name }}">{{ member.first_name }} {{ member.last_name }}</a></h2>
+    <h3>{{ member.tagline }}</h3>
+  </li>
+  {% endfor %}
+{% endblock %}

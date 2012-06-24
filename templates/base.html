@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    {% block links %}{% endblock %}
+    <link href='http://fonts.googleapis.com/css?family=Buenard:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/blog_style.css" />
+    <meta charset="utf-8" />
+    <title>{% block title %}apatapa{% endblock %}</title>
+  </head>
+  <div id="wrap">
+    <div id="header">
+      <h1><a href="/">Apatapa</a></h1>
+    </div>
+    <div id="nav">
+      <hr />
+      <ul>
+	<li><a href="/">Home</a></li>
+	<li><a href="/team">Team</a></li>
+	<li><a href="/beads">Beads</a></li>
+	<li><a href="/photos">Photos</a></li>
+	<li><a href="/feed/rss">Subscribe</a></li>
+      </ul>
+      <hr />
+    </div>
+    <div id="main">
+      {% block content %}
+      {% endblock %}
+    </div>
+    {% block footer %}
+    {% endblock %}
+  </div>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if entries %}
+{% for entry in entries %}
+<div class="entry">
+  <h2>{{ entry.title }}</h2>
+  <h3>{{ entry.tagline }}</h3>
+  <h4>{{ entry.date }}</h4>
+  {{ entry.body|safe }}
+</div>
+{% endfor %}
+{% else %}
+<h2>Bad news!</h2>
+<p>It appears that this entry doesn't exist. Whoops.</p>
+{% endif %}
+{% endblock %}
+{% block footer %}
+<div id="footer">
+  <hr />
+  <p>{{ date }}</p>
+  <p>apatapa</p>
+  <hr />
+</div>
+{% endblock %}
