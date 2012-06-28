@@ -57,7 +57,6 @@ def send_entry(data, content_type, jsonify=True):
     request = conn.request('POST', '/post', data, headers)
     response = conn.getresponse()
     response_text = response.read()
-    print response_text
     if response_text == 'success!':
         print 'Success!'
     elif response_text == 'password failure!':

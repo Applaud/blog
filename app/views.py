@@ -60,17 +60,22 @@ def photos(request):
     return HttpResponse('Foo!')
 
 def save_entry(request):
+    print 'saving entry'
     entry_data = json.load(request)
     title = entry_data['title']
     if not pass_ok(entry_data['password']):
         return HttpResponse('password failure!')
+    print 'password OK'
     normalized_title = entry_data['normalized_title']
     tagline = entry_data['tagline']
     body = entry_data['body']
     date = datetime.datetime.today()
+    print 'date OK'
     entry = Entry(title=title, normalized_title=normalized_title,
                   tagline=tagline, body=body, date=date)
+    print 'entry created'
     entry.save()
+    print 'entry saved'
     return HttpResponse('success!')
 
 def save_img(request):
@@ -86,15 +91,16 @@ def save_img(request):
 
 @csrf_exempt
 def post(request):
-    print request.POST
     if request.method != 'POST':
         return HttpResponse('failure!')
     if request.META['CONTENT_TYPE'] == 'application/json':
-        return save_entry(request)
+        foo = save_entry(request)
+        print 'foo is %s' % foo
+        return foo
     elif request.META['CONTENT_TYPE'] == 'multipart/form-data; boundary=----------boundary----------':
         return save_img(request)
     else:
-        return HttpResponse('foo!')
+        return HttpResponse("Shit! That didn't work.")
 
 def pass_ok(passhash):
     with open('./password') as passfile:

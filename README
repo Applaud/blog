@@ -1,1 +1,15 @@
-apatapablog
+apatapablog!
+
+for posting: ./post.py <blog | image> <filename>
+
+images should be PNG or JPEG.
+
+blogs follow this format:
+      <title>
+      <subtitle/tagline>
+      <body text>
+      
+      The blank denotes a paragraph.
+      This sentence is in the same paragraph as the last one.
+      
+      This sentence is in a new paragraph.
